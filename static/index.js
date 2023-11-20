@@ -92,7 +92,7 @@ function askBot() {
             let chat_input_data = {
                 "user_bot_input_text": user_bot_input_text
             }
-            //Escreva a chamada AJAX aqui
+
             $.ajax({
                 type: 'POST',
                 url: "/bot-response",
@@ -113,13 +113,10 @@ function askBot() {
         }
 
     })
-   
-      //Envie uma mensagem se a tecla Enter (código de tecla 13) for pressionada 
-      $('#bot_input_text').keypress(function(e){
+    $('#bot_input_text').keypress(function(e){
         //Se a tecla Enter (código de tecla 13) for pressionada
         if(e.which == 13){         
             $('#send_button').click(); //Dispara o evento de clicar do botão Enviar
         }
-    });    
-    
+    });
 }

@@ -1,5 +1,8 @@
 # Biblioteca de pré-processamento de dados de texto
 import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+
 
 from nltk.stem import PorterStemmer
 stemmer = PorterStemmer()
@@ -9,7 +12,6 @@ import pickle
 
 import numpy as np
 import random
-
 
 words=[] #lista de palavras-raiz únicas nos dados
 classes = [] #lista de tags únicas nos dados
@@ -28,7 +30,6 @@ def get_stem_words(words, ignore_words):
             stem_words.append(w)
     return stem_words
  
-# função para criar o corpus
 def create_bot_corpus(words, classes, pattern_word_tags_list, ignore_words):
 
     for intent in intents['intents']:
@@ -55,7 +56,6 @@ def create_bot_corpus(words, classes, pattern_word_tags_list, ignore_words):
 # Texto de Entrada----> como Saco de Palavras (Bag Of Words) 
 # Tags----------------> como Label
 
-# função que gera o saco de palavras
 def bag_of_words_encoding(stem_words, pattern_word_tags_list):
     
     bag = []
@@ -77,7 +77,6 @@ def bag_of_words_encoding(stem_words, pattern_word_tags_list):
     
     return np.array(bag)
 
-# função que gera uma etiqueta (label/número) para cada classe
 def class_label_encoding(classes, pattern_word_tags_list):
     
     labels = []
@@ -100,7 +99,6 @@ def class_label_encoding(classes, pattern_word_tags_list):
         
     return np.array(labels)
 
-# função que treina o modelo e chama a função que cria o corpus
 def preprocess_train_data():
   
     stem_words, tag_classes, word_tags_list = create_bot_corpus(words, classes, pattern_word_tags_list, ignore_words)
@@ -114,6 +112,7 @@ def preprocess_train_data():
     
     return train_x, train_y
 
-#preprocess_train_data()
+
+preprocess_train_data()
 
 

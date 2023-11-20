@@ -7,13 +7,11 @@ app = Flask(__name__)
 predicted_emotion=""
 predicted_emotion_img_url=""
 
-# rota principal
 @app.route('/')
 def index():
     entries = show_entry()
     return render_template("index.html", entries=entries)
-
-# rota acionada no click do botão "Prever Emoção" chamar o modelo de análise de sentimentos
+ 
 @app.route('/predict-emotion', methods=["POST"])
 def predict_emotion():
     
@@ -39,10 +37,10 @@ def predict_emotion():
                             }  
                    }
 
-        # Enviar resposta               
+        # Enviar resposta         
         return jsonify(response)
 
-# rota acionada no click do botao "Salvar Entrada" 
+
 @app.route("/save-entry", methods=["POST"])
 def save_entry():
 
@@ -60,7 +58,7 @@ def save_entry():
         f.write(entry)
     return jsonify("Success")
 
-#Rota acionada quando o usuário abrir o chatbot
+
 @app.route("/bot-response", methods=["POST"])
 def bot():
     # Obtenha a entrada do usuário
@@ -74,8 +72,6 @@ def bot():
         }
 
     return jsonify(response)     
-    
-
-    
+     
 if __name__ == '__main__':
     app.run(debug=True)
